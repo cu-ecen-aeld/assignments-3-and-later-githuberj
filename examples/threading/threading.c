@@ -15,10 +15,15 @@ void* threadfunc(void* thread_param)
     //struct thread_data* thread_func_args = (struct thread_data *) thread_param;
     struct thread_data* thread_func_args = (struct thread_data *) thread_param;
     usleep(thread_func_args->wait_to_obtain_ms * 1000); // wait to obtain mutex
-    pthread_mutex_lock(thread_func_args->mutex); // obtain mutex
-    usleep(thread_func_args->wait_to_release_ms * 1000); // wait before releasing mutex
-    pthread_mutex_unlock(thread_func_args->mutex); // release mutex
-    thread_func_args->thread_complete_success = true; // set thread_complete_success to true
+    int ret = pthread_mutex_lock(thread_func_args->mutex); // obtain mutex
+    if (ret == 0) {
+        usleep(thread_func_args->wait_to_release_ms * 1000); // wait before releasing mutex
+        int ret = pthread_mutex_unlock(thread_func_args->mutex); // release mutex
+        if (ret == 0) {
+            thread_func_args->thread_complete_success = true; // set thread_complete_success to true
+        }
+    }
+    
     return thread_param;
 }
 
