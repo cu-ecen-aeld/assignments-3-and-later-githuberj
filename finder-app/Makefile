@@ -13,7 +13,7 @@ $(TARGET): $(OBJ)
 
 # Rule to compile .c files to .o files
 %.o: %.c $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CROSS_COMPILE)$(CC) -c -o $@ $< $(CFLAGS)
 
 # Clean up
 .PHONY: clean
