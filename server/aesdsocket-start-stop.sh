@@ -1,8 +1,7 @@
 #!/bin/sh
 
 # Path to aesdsocket program
-AESDSOCKET_BIN="/home/score/assignment-1-githuberj/server/aesdsocket"
-#AESDSOCKET_BIN="/usr/bin/aesdsocket"
+AESDSOCKET_BIN="/usr/bin/aesdsocket"
 
 # Command line arguments for aesdsocket
 AESDSOCKET_ARGS="-d"
