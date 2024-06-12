@@ -7,6 +7,8 @@ CFLAGS = -Wall -Wextra -I.
 OBJ = writer.o 
 TARGET = writer
 
+all: writer
+
 # Rule to create the final executable
 $(TARGET): $(OBJ)
 	$(CROSS_COMPILE)$(CC) -o $@ $^
