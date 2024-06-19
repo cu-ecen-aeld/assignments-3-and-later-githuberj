@@ -206,11 +206,16 @@ int main(int argc, char *argv[])
 
     // Start a separate thread to write timestamp to file every 10 seconds
     pthread_t timestamp_thread;
-    pthread_create(&timestamp_thread, NULL, write_timestamp_to_file, NULL);
+    bool time_thread_started = false;
 
     while (true)
     {
         int new_socket = accept(server_fd, NULL, NULL);
+
+        if (time_thread_started == false) {
+            time_thread_started = true;
+            pthread_create(&timestamp_thread, NULL, write_timestamp_to_file, NULL);
+        }
 
         if (new_socket == -1)
         {
