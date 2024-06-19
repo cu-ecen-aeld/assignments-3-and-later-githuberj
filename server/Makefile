@@ -1,6 +1,7 @@
-#CC = $(CROSS_COMPILE)gcc
-CFLAGS = -Wall -pthread 
-LDFLAGS = -Wl,--hash-style=gnu
+CC?= $(CROSS_COMPILE)gcc
+CFLAGS?= -Wall -pthread 
+LDFLAGS?= -Wl,--hash-style=gnu
+
 all: aesdsocket
 
 aesdsocket: server.c
